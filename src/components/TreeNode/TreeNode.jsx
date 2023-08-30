@@ -60,6 +60,7 @@ const TreeNode = ({
 
   const [isSelected, setIsSelected] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
+  const [hover, setHover] = useState(false);
 
   const {
     FileIcon = getDefaultIcon(AiOutlineFile),
@@ -184,7 +185,7 @@ const TreeNode = ({
 
   return (
     <>
-      <div className='TreeNode' style={ treeNodeStyle }>
+      <div onMouseEnter={ () => { setHover(true); } } onMouseLeave={ () => { setHover(false); } } className='TreeNode' style={ treeNodeStyle }>
         { showCheckbox && (
           <CheckBox
             status={ checked }
@@ -215,7 +216,7 @@ const TreeNode = ({
             nodeData={ nodeData }
           />
         </span>
-        { isSelected && TreeNodeToolBar }
+        { hover && TreeNodeToolBar }
 
       </div>
 
